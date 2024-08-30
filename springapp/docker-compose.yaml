@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:12.0
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+
+  springapp:
+    container_name: springapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: springapp:latest
+    ports:
+      - 8081:8081
